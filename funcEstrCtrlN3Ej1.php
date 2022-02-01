@@ -1,21 +1,36 @@
 <?php 
-$numMin=2;
-$numMax=20;
+//$numMin=2;
+$num=20;
 
+listaPrimosErastostenes($num);     
 
-for ($i=$numMin; $i<=$numMax; $i++) { 
-    echo $i. " ";
-}
-echo "<br>";
-echo "Son primos: ",
-listaPrimos($i); 
-
-function listaPrimos($numMax){
+function listaPrimosErastostenes($numMax){
     $numMin=2;
-    for ($i=$numMin; $i<$numMax; $i++) { 
-        if ($i %2 != 0){
-            echo $i. " ";
-        }
+    //$primos=array();
+    for ($i=$numMin; $i<=$numMax; $i++) {       
+        $primos[$i] = true;     
+    }                                           
+    var_dump($primos);
+       echo "<br>"; 
+
+    for ($j=$numMin; $j <= $numMax; $j++) {   
+        var_dump($j);
+        echo "<br>";     
+       if ($primos[$j] == true) {                       
+           for ($i= $j * $j; $i <= $numMax; $i==$j+$j) {  
+            $primos[$i]= false;                              
+           }
+       }
     }
-}    
+    var_dump($primos);
+       echo "<br>";
+
+    for ($j=2; $j <=$numMax ; $j++) {       
+        if ($primos[$j]== true) {
+            echo $j;
+        }
+       
+    }
+    var_dump($primos);
+}
 ?>
